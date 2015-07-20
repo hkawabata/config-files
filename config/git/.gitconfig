@@ -1,0 +1,15 @@
+[user]
+	name = hkawabata
+	email = meiwaku_mail_iyaaaaa@yahoo.co.jp
+[alias]
+	ch = checkout
+	co = commit
+	st = status
+	br = branch
+[color]
+	ui = auto
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	grep = auto
