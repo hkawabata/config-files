@@ -1,21 +1,43 @@
 ;;;; ロードパスの設定
 (setq load-path (append (list
                          (expand-file-name "~/.emacs.d/elisp")
-						 (expand-file-name "~/.emacs.d/elisp/ess-12.09/lisp")
-						 )
+			 (expand-file-name "~/.emacs.d/elisp/ess-12.09/lisp")
+			 )
                         load-path))
 
 ;;;; パッケージ管理に melpa を追加
 (require 'package)
-(add-to-list 'package-archives
-			 '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+
+(require 'cl)
+(defvar my-packages
+  '(flycheck js2-mode php-mode)
+  "A list of packages to ensure are installed at launch.")
+
+(defun my-packages-installed-p ()
+  (loop for p in my-packages
+	when (not (package-installed-p p)) do (return nil)
+	finally (return t)))
+
+(unless (my-packages-installed-p)
+  ;; check for new packages (package versions)
+  (package-refresh-contents)
+  ;; install the missing packages
+  (dolist (p my-packages)
+	(when (not (package-installed-p p))
+	  (package-install p))))
+
+
 
 ;;;; 自動コードチェック
 ;;;;     対応言語（確認済み）: C, C++, elisp, HTML, Perl, Python, Ruby
 ;;;;     対応言語（未確認）: CSS, JS, PHP, ShelScripts, Tex, XML
 ;;;;     あれ、対応してなくない？: CSS, JS, PHP, Tex
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;;;; メニューバーを非表示
 ;;;; not express menu bar
