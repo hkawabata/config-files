@@ -1,15 +1,14 @@
 ;;; init.el --- initial setting for emacs
 ;;; Commentary:
 
-
 ;;; Code:
 
 ;;; ロードパスの設定
-;(setq load-path (append (list
-;                         (expand-file-name "~/.emacs.d/elisp")
-;						 (expand-file-name "~/.emacs.d/elisp/ess-12.09/lisp")
-;						 )
-;                        load-path))
+;;(setq load-path (append (list
+;;                         (expand-file-name "~/.emacs.d/elisp")
+;;						 (expand-file-name "~/.emacs.d/elisp/ess-12.09/lisp")
+;;						 )
+;;                        load-path))
 
 ;;;********** パッケージ管理に melpa, marmalade を追加 **********
 (require 'package)
@@ -24,7 +23,7 @@
     auto-complete
     git-gutter
     col-highlight
-    js2-mode php-mode
+    js2-mode php-mode scala-mode2
     ;; gnuplot-mode markdown-mode scala-mode
     ;; このリストにあるパッケージがインストールされる
     )
@@ -71,6 +70,7 @@
 ;;;;     あれ、対応してなくない？: CSS, PHP, Tex
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 
 ;;;********** メニューバーを非表示 **********
 (menu-bar-mode -1)
