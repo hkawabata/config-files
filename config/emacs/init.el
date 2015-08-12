@@ -70,7 +70,6 @@
 ;;;;     あれ、対応してなくない？: CSS, PHP, Tex
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 
 ;;;********** メニューバーを非表示 **********
 (menu-bar-mode -1)
